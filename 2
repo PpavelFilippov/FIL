@@ -1,0 +1,56 @@
+#define N 9
+#pragma warning(disable: 4996)
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void FillFloats(float arr[], int length)
+{
+	int i = 0;
+	srand(time(0));
+	for (i; i < N; i++)
+	{
+		arr[i] = rand() % 100;
+	}
+
+}
+void PrintFloats(float arr[], int length)
+{
+	int i = 0;
+	printf("{");
+	for (i; i < N - 1; i++)
+	{
+
+		printf("%.1f", arr[i]);
+		printf(",");
+
+	}
+	printf("%.1f", arr[i]);
+	printf("}\n");
+}
+
+void WriteText(char const* filename, float arr[], int length)
+{
+	int i = 0;
+	FILE* f = fopen("massive.txt", "w+");
+
+	for (i; i < N; i++)
+	{
+		fprintf(f, "%.1f ", arr[i]);
+	}
+	fclose(f);
+}
+void WriteBinary(char const* filename, float arr[], int length)
+{
+	FILE* g = fopen("masbinary.bin", "w+");
+	fwrite(arr, sizeof(float), N, g);
+	fclose(g);
+}
+int main()
+{
+	int Length = 0;
+	float A[N];
+	FillFloats(A, N);
+	PrintFloats(A, N);
+	WriteText("massive.txt", A, N);
+	WriteBinary("masbinary.bin", A, N);
+}
