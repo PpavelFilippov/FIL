@@ -1,0 +1,36 @@
+#define N 9
+#pragma warning(disable: 4996)
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void FillFloats(float arr[], int length)
+{
+	int i = 0;
+	srand(time(0));
+	for (i; i < N; i++)
+	{
+		arr[i] = rand() % 100;
+	}
+
+}
+void PrintFloats(float arr[], int length)
+{
+	int i = 0;
+	printf("{");
+	for (i; i < N - 1; i++)
+	{
+
+		printf("%.1f", arr[i]);
+		printf(",");
+
+	}
+	printf("%.1f", arr[i]);
+	printf("}\n");
+}
+int main()
+{
+	int Length = 0;
+	float A[N];
+	FillFloats(A, N);
+	PrintFloats(A, N);
+}
